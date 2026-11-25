@@ -511,3 +511,36 @@ footer {
   }
                     }
 
+/* Falling rose petals */
+.petal-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rose-petal {
+  position: absolute;
+  top: -30px;
+  left: var(--left);
+  width: 13px;
+  height: 19px;
+  border-radius: 90% 10% 85% 15%;
+  background: linear-gradient(135deg, #ffd0ce, #c52f50);
+  animation: roseFall var(--duration) var(--delay) ease-in forwards;
+}
+
+@keyframes roseFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  15% { opacity: 1; }
+  100% {
+    transform: translate(var(--drift), 110vh) rotate(520deg);
+    opacity: 0;
+  }
+    }
+
+
