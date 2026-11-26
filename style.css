@@ -856,3 +856,110 @@ footer {
   .envelope-area { width: 270px; height: 345px; }
   .envelope { height: 270px; }
 }
+
+
+/* Royal welcome / loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(211,160,119,.18), transparent 38%),
+    radial-gradient(ellipse at 85% 85%, rgba(177,138,76,.16), transparent 40%),
+    #4e1022;
+  transition: opacity .8s ease, visibility .8s ease;
+}
+.loading-screen.leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loading-card {
+  width: min(420px, 100%);
+  padding: 42px 24px 35px;
+  text-align: center;
+  color: #f8ead5;
+  border: 1px solid #c6a064;
+  outline: 1px solid rgba(198,160,100,.35);
+  outline-offset: 7px;
+  background: linear-gradient(145deg, rgba(112,25,47,.95), rgba(57,10,25,.98));
+  box-shadow: 0 20px 60px rgba(0,0,0,.28), inset 0 0 35px rgba(226,190,118,.08);
+}
+.loading-flower {
+  color: #e4c184;
+  font-size: 42px;
+  margin-bottom: 12px;
+  animation: loadingPulse 2s ease-in-out infinite;
+}
+.loading-kicker {
+  color: #d9b879;
+  font: 11px 'Playfair Display', serif;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+.loading-card h2 {
+  color: #fff0d8;
+  font-size: 23px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.loading-subtitle, .loading-note {
+  color: #e1c9aa;
+  font-size: 13px;
+}
+.loading-line {
+  width: 150px;
+  height: 2px;
+  margin: 25px auto;
+  overflow: hidden;
+  background: rgba(226,190,118,.22);
+}
+.loading-line span {
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: #e4c184;
+  animation: loadingSweep 1.5s ease-in-out infinite;
+}
+.enter-btn {
+  border: 1px solid #e2c17c;
+  border-radius: 30px;
+  padding: 11px 22px;
+  color: #5b1427;
+  background: linear-gradient(135deg, #f4dfb8, #d8b578);
+  font: 600 14px 'Hind Siliguri', sans-serif;
+  cursor: pointer;
+}
+.loading-note { margin-top: 13px; font-size: 11px; }
+.youtube-music-player {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 15000;
+  width: 200px;
+  height: 113px;
+  display: none;
+  overflow: hidden;
+  border: 1px solid #c6a064;
+  border-radius: 8px;
+  background: #2b0b16;
+  box-shadow: 0 5px 22px rgba(0,0,0,.25);
+}
+.youtube-music-player.visible { display: block; }
+.youtube-music-player iframe { width: 100%; height: 100%; border: 0; }
+@keyframes loadingSweep {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(240%); }
+}
+@keyframes loadingPulse {
+  0%, 100% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+@media (max-width: 380px) {
+  .loading-card { padding: 34px 18px 28px; }
+  .loading-card h2 { font-size: 20px; }
+  .youtube-music-player { width: 160px; height: 90px; }
+}
