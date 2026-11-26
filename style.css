@@ -963,3 +963,16 @@ footer {
   .loading-card h2 { font-size: 20px; }
   .youtube-music-player { width: 160px; height: 90px; }
 }
+
+
+/* Keep the invitation page locked until the envelope is opened */
+html.invitation-locked,
+body.invitation-locked {
+  overflow: hidden !important;
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+body.invitation-locked .hero {
+  min-height: 100svh;
+}
