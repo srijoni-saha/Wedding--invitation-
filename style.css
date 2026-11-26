@@ -515,7 +515,7 @@ footer {
 .petal-rain {
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 9999;
   overflow: hidden;
   pointer-events: none;
 }
@@ -524,8 +524,9 @@ footer {
   position: absolute;
   top: -30px;
   left: var(--left);
-  width: 13px;
-  height: 19px;
+  width: 17px;
+  height: 24px;
+  box-shadow: 0 1px 5px rgba(120, 0, 30, .25);
   border-radius: 90% 10% 85% 15%;
   background: linear-gradient(135deg, #ffd0ce, #c52f50);
   animation: roseFall var(--duration) var(--delay) ease-in forwards;
