@@ -998,32 +998,40 @@ body.invitation-locked .hero {
 }
 
 
-/* One fixed crimson-silk backdrop, revealed when the music starts */
+/* Fixed silk backdrop layer; content and paper slides sit above it */
+html, body {
+  min-height: 100%;
+}
 body {
   position: relative;
-  isolation: isolate;
-  background: transparent;
+  background: transparent !important;
 }
-body::before {
-  content: "";
+#pageSilkBackground {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   opacity: 0;
-  background: url("file_0000000016988208b628e1fdfda8e44e.png") center / cover no-repeat;
+  background-image: url("file_0000000016988208b628e1fdfda8e44e.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   transition: opacity 1s ease;
 }
-body.music-started::before {
+body.music-started #pageSilkBackground {
   opacity: 1;
 }
-
-/* The opening screen sits over the same fixed silk backdrop */
+#loadingScreen,
+.top-controls,
+main {
+  position: relative;
+  z-index: 1;
+}
 .hero {
-  background: transparent;
+  background: transparent !important;
 }
 
-/* Every detail slide is a separate antique-gold paper sheet */
+/* Antique paper sheets scroll above the stationary silk */
 .section {
   min-height: 100svh;
   width: 100%;
@@ -1032,15 +1040,15 @@ body.music-started::before {
   justify-content: center;
   align-items: center;
   padding: 92px 22px;
-  background-color: #d7b987;
-  background-image: url("b7078aa17aaf1ad49ef5b257aca69458.jpg");
-  background-position: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-color: #d7b987 !important;
+  background-image: url("b7078aa17aaf1ad49ef5b257aca69458.jpg") !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
   isolation: isolate;
 }
 .section::before {
-  content: none;
+  content: none !important;
 }
 .section h2,
 .section .eyebrow,
