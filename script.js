@@ -108,11 +108,11 @@ envelopeArea.addEventListener("click", () => {
 
   openHint.textContent = "আমন্ত্রণটি খুলে গেছে ♥";
 
+  // Keep the opened envelope in view; unlock the invitation after it opens.
   setTimeout(() => {
-    document.getElementById("invitation").scrollIntoView({
-      behavior: "smooth"
-    });
-  }, 2200);
+    document.body.classList.remove("invitation-locked");
+    document.documentElement.classList.remove("invitation-locked");
+  }, 1500);
 
 });
 
