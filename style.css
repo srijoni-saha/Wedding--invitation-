@@ -976,3 +976,23 @@ body.invitation-locked {
 body.invitation-locked .hero {
   min-height: 100svh;
 }
+
+
+/* Slowly dissolve the envelope while keeping the invitation card visible */
+.envelope.shell-fade .envelope-back,
+.envelope.shell-fade .envelope-front,
+.envelope.shell-fade .envelope-flap,
+.envelope.shell-fade .seal {
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  pointer-events: none;
+}
+.envelope.shell-fade {
+  filter: none;
+  transition: filter 1.8s ease;
+}
+.envelope.shell-fade .letter {
+  opacity: 1;
+  z-index: 10;
+  transition: transform 1.35s cubic-bezier(.18,.78,.25,1), opacity .3s ease;
+}
