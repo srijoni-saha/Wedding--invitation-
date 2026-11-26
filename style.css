@@ -998,7 +998,32 @@ body.invitation-locked .hero {
 }
 
 
-/* Crimson silk slides for each wedding-details section */
+/* One fixed crimson-silk backdrop, revealed when the music starts */
+body {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: url("file_0000000016988208b628e1fdfda8e44e.png") center / cover no-repeat;
+  transition: opacity 1s ease;
+}
+body.music-started::before {
+  opacity: 1;
+}
+
+/* The opening screen sits over the same fixed silk backdrop */
+.hero {
+  background: transparent;
+}
+
+/* Every detail slide is a separate antique-gold paper sheet */
 .section {
   min-height: 100svh;
   width: 100%;
@@ -1006,31 +1031,16 @@ body.invitation-locked .hero {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("file_0000000016988208b628e1fdfda8e44e.png");
-  background-position: center center;
-  background-size: cover;
+  padding: 92px 22px;
+  background-color: #d7b987;
+  background-image: url("b7078aa17aaf1ad49ef5b257aca69458.jpg");
+  background-position: center;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   isolation: isolate;
-  padding: 92px 22px;
 }
 .section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(180deg, rgba(255,247,235,.12), rgba(255,247,235,.20));
-  pointer-events: none;
-}
-.invitation,
-.traditions,
-.date-section,
-.venue-section,
-.contact-section {
-  background-color: #7d1028;
-  background-image: url("file_0000000016988208b628e1fdfda8e44e.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  content: none;
 }
 .section h2,
 .section .eyebrow,
