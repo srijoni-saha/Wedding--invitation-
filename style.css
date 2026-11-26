@@ -712,3 +712,104 @@ footer {
     }
 
 
+
+
+/* Royal stationery refinement: matching envelope and peaked invitation card */
+.envelope-area {
+  width: min(310px, calc(100vw - 48px));
+  height: 330px;
+}
+.envelope {
+  height: 220px;
+  margin-top: 48px;
+}
+.envelope-back {
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255,218,153,.11), transparent 65%),
+    repeating-linear-gradient(35deg, rgba(255,220,160,.055) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(125deg, rgba(30,0,8,.08) 0 2px, transparent 2px 6px),
+    linear-gradient(145deg, #8c1e34, #4e1022 56%, #8b1d34);
+  box-shadow: inset 0 0 0 5px #651629, inset 0 0 0 7px rgba(221,184,112,.85),
+              inset 0 0 30px rgba(35,0,10,.5);
+}
+.envelope-back::before {
+  inset: 11px;
+  border: 1px solid rgba(231,194,119,.9);
+  outline: 1px solid rgba(231,194,119,.3);
+  outline-offset: 4px;
+}
+.envelope-front {
+  background:
+    repeating-linear-gradient(35deg, rgba(255,220,160,.045) 0 1px, transparent 1px 5px),
+    linear-gradient(145deg, #861d32, #581326 60%, #8e2037);
+}
+.envelope-flap {
+  background:
+    repeating-linear-gradient(35deg, rgba(255,220,160,.045) 0 1px, transparent 1px 5px),
+    linear-gradient(145deg, #9b2940, #641529 65%, #8e2037);
+}
+.letter {
+  width: 100%;
+  height: 220px;
+  left: 0;
+  top: 0;
+  padding: 7px;
+  transform: translateY(0);
+  clip-path: polygon(0 15%, 14% 15%, 14% 8%, 22% 8%, 28% 2%, 36% 8%, 44% 8%, 50% 0, 56% 8%, 64% 8%, 72% 2%, 78% 8%, 86% 8%, 86% 15%, 100% 15%, 100% 100%, 0 100%);
+  background:
+    radial-gradient(ellipse at 50% 12%, #fffdf5, transparent 65%),
+    repeating-linear-gradient(0deg, rgba(155,118,65,.025) 0 1px, transparent 1px 4px),
+    linear-gradient(145deg, #fffaf0, #ead8b9);
+  border: 1px solid #bd914f;
+  box-shadow: 0 5px 14px rgba(35,10,16,.22);
+}
+.letter::before {
+  inset: 10px 8px 6px;
+  border: 1px solid rgba(175,130,62,.55);
+  clip-path: polygon(0 14%, 14% 14%, 14% 7%, 22% 7%, 28% 1%, 36% 7%, 44% 7%, 50% 0, 56% 7%, 64% 7%, 72% 1%, 78% 7%, 86% 7%, 86% 14%, 100% 14%, 100% 100%, 0 100%);
+}
+.letter-inner {
+  border: 1px solid rgba(178,137,66,.82);
+  clip-path: polygon(0 13%, 14% 13%, 14% 7%, 22% 7%, 28% 1%, 36% 7%, 44% 7%, 50% 0, 56% 7%, 64% 7%, 72% 1%, 78% 7%, 86% 7%, 86% 13%, 100% 13%, 100% 100%, 0 100%);
+  padding: 24px 12px 7px;
+}
+.letter-corner-tl, .letter-corner-tr { top: 22px; }
+.letter-corner-bl, .letter-corner-br { bottom: 2px; }
+.letter-flower { font-size: 20px; }
+.letter-kicker {
+  margin: 1px 0 0;
+  font-size: 11px;
+}
+.letter-couple-art {
+  width: 100%;
+  height: 93px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1px;
+}
+.letter-couple-art svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.letter-writing-space {
+  width: 82%;
+  height: 30px;
+  margin-top: -1px;
+  justify-content: space-around;
+}
+.letter-writing-space span {
+  background: linear-gradient(90deg, transparent, rgba(166,126,65,.48) 12%, rgba(166,126,65,.48) 88%, transparent);
+}
+.letter-small { margin-top: 1px; font-size: 9px; }
+.envelope.open .letter {
+  transform: translateY(-112px);
+}
+@media (max-width: 380px) {
+  .envelope-area { width: 270px; height: 310px; }
+  .envelope { height: 200px; }
+  .letter { height: 200px; }
+  .letter-inner { padding-top: 22px; }
+  .letter-couple-art { height: 82px; }
+}
