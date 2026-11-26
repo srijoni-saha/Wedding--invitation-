@@ -112,7 +112,7 @@ envelopeArea.addEventListener("click", () => {
     document.getElementById("invitation").scrollIntoView({
       behavior: "smooth"
     });
-  }, 1200);
+  }, 2200);
 
 });
 
