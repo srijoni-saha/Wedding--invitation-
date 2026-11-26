@@ -196,36 +196,75 @@ setInterval(updateCountdown, 1000);
 
 
 // ==================================
-// BACKGROUND MUSIC
+// YOUTUBE MUSIC + WELCOME SCREEN
 // ==================================
 
-const music = document.getElementById("weddingMusic");
 const musicBtn = document.getElementById("musicBtn");
+const enterInvitation = document.getElementById("enterInvitation");
+const loadingScreen = document.getElementById("loadingScreen");
+const youtubePlayerBox = document.getElementById("youtubeMusicPlayer");
 
+let youtubePlayer = null;
+let youtubeReady = false;
+let startMusicWhenReady = false;
 let musicPlaying = false;
 
-musicBtn.addEventListener("click", async () => {
-
-  if (!musicPlaying) {
-
-    try {
-      await music.play();
-      musicPlaying = true;
-      musicBtn.textContent = "♫ Music: On";
-    } catch (error) {
-      musicBtn.textContent = "Add music.mp3 first";
+window.onYouTubeIframeAPIReady = function () {
+  youtubePlayer = new YT.Player("youtubeMusicPlayer", {
+    videoId: "E3IXa9h-WIo",
+    playerVars: {
+      playsinline: 1,
+      controls: 1,
+      rel: 0
+    },
+    events: {
+      onReady: function () {
+        youtubeReady = true;
+        if (startMusicWhenReady) {
+          youtubePlayer.playVideo();
+          musicPlaying = true;
+          musicBtn.textContent = "♫ Music: On";
+        }
+      },
+      onStateChange: function (event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          musicPlaying = true;
+          musicBtn.textContent = "♫ Music: On";
+        } else if (event.data === YT.PlayerState.PAUSED ||
+                   event.data === YT.PlayerState.ENDED) {
+          musicPlaying = false;
+          musicBtn.textContent = "♫ Music: Off";
+        }
+      }
     }
+  });
+};
 
-  } else {
+const youtubeApi = document.createElement("script");
+youtubeApi.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(youtubeApi);
 
-    music.pause();
-    musicPlaying = false;
-    musicBtn.textContent = "♫ Music: Off";
+enterInvitation.addEventListener("click", function () {
+  startMusicWhenReady = true;
+  youtubePlayerBox.classList.add("visible");
 
+  if (youtubeReady && youtubePlayer) {
+    youtubePlayer.playVideo();
   }
 
+  loadingScreen.classList.add("leaving");
+  setTimeout(() => loadingScreen.remove(), 900);
 });
 
+musicBtn.addEventListener("click", function () {
+  if (!youtubeReady || !youtubePlayer) return;
+
+  if (musicPlaying) {
+    youtubePlayer.pauseVideo();
+  } else {
+    youtubePlayer.playVideo();
+  }
+});
 
 // ==================================
 // SCROLL ANIMATIONS
