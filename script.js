@@ -78,6 +78,25 @@ const openHint = document.getElementById("openHint");
 
 let envelopeOpened = false;
 
+function createRosePetals() {
+  const rain = document.createElement("div");
+  rain.className = "petal-rain";
+  rain.setAttribute("aria-hidden", "true");
+
+  for (let i = 0; i < 42; i++) {
+    const petal = document.createElement("span");
+    petal.className = "rose-petal";
+    petal.style.setProperty("--left", Math.random() * 100 + "vw");
+    petal.style.setProperty("--duration", (3.5 + Math.random() * 3) + "s");
+    petal.style.setProperty("--delay", (Math.random() * 1.8) + "s");
+    petal.style.setProperty("--drift", (Math.random() * 180 - 90) + "px");
+    rain.appendChild(petal);
+  }
+
+  document.body.appendChild(rain);
+  setTimeout(() => rain.remove(), 7500);
+}
+
 envelopeArea.addEventListener("click", () => {
 
   if (envelopeOpened) return;
@@ -85,6 +104,7 @@ envelopeArea.addEventListener("click", () => {
   envelopeOpened = true;
 
   envelope.classList.add("open");
+  createRosePetals();
 
   openHint.textContent = "আমন্ত্রণটি খুলে গেছে ♥";
 
