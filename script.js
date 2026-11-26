@@ -250,6 +250,7 @@ youtubeApi.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(youtubeApi);
 
 enterInvitation.addEventListener("click", function () {
+  document.body.classList.add("music-started");
   startMusicWhenReady = true;
   youtubePlayerBox.classList.add("visible");
 
