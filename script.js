@@ -108,11 +108,16 @@ envelopeArea.addEventListener("click", () => {
 
   openHint.textContent = "আমন্ত্রণটি খুলে গেছে ♥";
 
-  // Keep the opened envelope in view; unlock the invitation after it opens.
+  // Let the card rise first, then slowly fade away the envelope shell.
+  setTimeout(() => {
+    envelope.classList.add("shell-fade");
+  }, 1350);
+
+  // Unlock scrolling after the envelope has faded and the card is visible.
   setTimeout(() => {
     document.body.classList.remove("invitation-locked");
     document.documentElement.classList.remove("invitation-locked");
-  }, 1500);
+  }, 3300);
 
 });
 
