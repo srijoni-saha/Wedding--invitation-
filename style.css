@@ -73,93 +73,151 @@ button, a {
 }
 
 .envelope-area {
-  width: 270px;
-  height: 200px;
-  margin: 30px auto;
-  perspective: 900px;
+  width: 280px;
+  height: 235px;
+  margin: 30px auto 20px;
+  perspective: 1100px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .envelope {
   position: relative;
   width: 100%;
-  height: 160px;
-  margin-top: 20px;
+  height: 170px;
+  margin-top: 28px;
   transform-style: preserve-3d;
-  transition: transform .7s ease;
+  filter: drop-shadow(0 15px 13px rgba(91, 35, 39, .16));
 }
 
 .envelope-back {
   position: absolute;
   inset: 0;
-  background: #d7a9a4;
-  border-radius: 5px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #f1d8c8, #c9827d);
+  border: 1px solid #b77a69;
+  box-shadow: inset 0 0 0 5px rgba(255, 239, 211, .28);
+}
+
+.envelope-back::after {
+  content: "❧";
+  position: absolute;
+  right: 12px;
+  bottom: 5px;
+  color: rgba(255, 239, 211, .65);
+  font-size: 32px;
 }
 
 .envelope-front {
   position: absolute;
   inset: 0;
-  background: #e9c7bf;
-  clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, #f3d8c7, #d99c91);
+  clip-path: polygon(0 0, 50% 66%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 5px;
   z-index: 3;
+  filter: drop-shadow(0 -1px 1px rgba(120, 55, 48, .18));
 }
 
 .envelope-flap {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #b94c55;
-  clip-path: polygon(0 0, 100% 0, 50% 58%);
-  transform-origin: top;
-  transition: transform .8s ease;
+  inset: 0;
+  background: linear-gradient(145deg, #9d293c, #c14e55 65%, #8d2338);
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: 50% 0%;
+  transition: transform 1.15s cubic-bezier(.2,.75,.25,1);
   z-index: 4;
+}
+
+.envelope-flap::after {
+  content: "";
+  position: absolute;
+  inset: 7px 9px auto;
+  height: 72px;
+  border-top: 1px solid rgba(255, 224, 174, .65);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 .letter {
   position: absolute;
-  width: 88%;
-  height: 140px;
-  left: 6%;
+  width: 86%;
+  height: 158px;
+  left: 7%;
   top: 5px;
-  background: #fffaf2;
-  border: 1px solid var(--gold);
+  padding: 7px;
+  background: linear-gradient(150deg, #fffdf7, #f8ecd9);
+  border: 1px solid #c9a45f;
   color: var(--red);
+  box-shadow: 0 3px 9px rgba(83, 37, 35, .14);
+  transition: transform 1.35s cubic-bezier(.18,.78,.25,1);
+  transform: translateY(0);
+  z-index: 2;
+}
+
+.letter-inner {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(178, 137, 66, .55);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: transform 1s ease;
-  z-index: 2;
+  position: relative;
 }
 
-.letter p {
-  font-family: 'Playfair Display', serif;
-  font-size: 19px;
+.letter-inner::before,
+.letter-inner::after {
+  content: "✦";
+  position: absolute;
+  color: #b58b48;
+  font-size: 12px;
+}
+.letter-inner::before { top: 5px; left: 8px; }
+.letter-inner::after { bottom: 5px; right: 8px; }
+
+.letter-kicker {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 12px;
+  color: #a77b42;
+  letter-spacing: 1px;
+  margin: 2px 0 3px;
+}
+
+.letter-inner strong {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: #8e2639;
 }
 
 .letter-flower {
-  font-size: 25px;
-  color: var(--gold);
+  font-size: 23px;
+  line-height: 1;
+  color: #b58b48;
 }
 
 .letter-small {
-  margin-top: 8px;
+  margin-top: 4px;
+  color: #b58b48;
+  letter-spacing: 4px;
+  font-size: 12px;
 }
 
 .seal {
   position: absolute;
-  top: 64px;
-  left: calc(50% - 21px);
-  width: 42px;
-  height: 42px;
+  top: 65px;
+  left: calc(50% - 22px);
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--red);
+  background: radial-gradient(circle at 35% 30%, #c94e59, #7f1f32 75%);
   color: #f8dfad;
-  border: 2px solid var(--gold);
+  border: 2px solid #d9b56f;
+  box-shadow: 0 2px 7px rgba(70, 20, 30, .28), inset 0 0 0 2px rgba(255,255,255,.12);
   z-index: 5;
-  transition: opacity .4s;
+  transition: opacity .35s ease, transform .55s ease;
 }
 
 .envelope.open .envelope-flap {
@@ -168,12 +226,13 @@ button, a {
 }
 
 .envelope.open .letter {
-  transform: translateY(-115px);
+  transform: translateY(-132px);
   z-index: 5;
 }
 
 .envelope.open .seal {
   opacity: 0;
+  transform: scale(1.65) rotate(-25deg);
 }
 
 .open-hint {
